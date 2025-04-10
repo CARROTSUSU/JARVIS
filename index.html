@@ -52,17 +52,6 @@
       width: 300px;
       text-align: center;
     }
-
-    button {
-      margin-top: 20px;
-      background-color: #00ffe7;
-      color: #000;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
@@ -72,7 +61,6 @@
   <div class="hud">
     <div class="pulse-circle"></div>
     <div class="output-box" id="output">Menunggu arahan...</div>
-    <button onclick="initJarvis()">Aktifkan JARVIS</button>
   </div>
 
   <script>
@@ -81,7 +69,8 @@
     const bgMusic = document.getElementById("bg-music");
     const powerUp = document.getElementById("power-up");
 
-    function speak(text, lang = "ms-MY") {
+    function speak(text, lang = "en-GB") {
+      synth.cancel(); // Hentikan suara yang sedang dimainkan
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = lang;
       utterance.pitch = 1.1;
@@ -130,6 +119,10 @@
         speak("Arahan tidak dikenali.", "ms-MY");
       }
     }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      initJarvis();
+    });
   </script>
 </body>
 </html>

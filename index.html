@@ -6,22 +6,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Audio files -->
+  <audio id="power-up" src="power-up.mp3" preload="auto"></audio>
+  <audio id="bg-music" src="bg-music.mp3" preload="auto" loop></audio>
+
   <div class="jarvis-container">
-    <h1>Selamat datang, Tuan.</h1>
+    <h1 class="welcome-animation">JARVIS ONLINE</h1>
     <div id="output" class="output-box">Arahan anda akan muncul di sini.</div>
     <button onclick="startListening()">Aktifkan Suara</button>
   </div>
-  <script src="scripts.js"></script>
-  <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const welcome = new SpeechSynthesisUtterance("Selamat datang, Tuan. Sistem JARVIS kini aktif.");
-    welcome.lang = "ms-MY";
-    welcome.pitch = 1.2;
-    welcome.rate = 1;
-    welcome.volume = 1;
-    speechSynthesis.speak(welcome);
-  });
-</script>
 
+  <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,1 +1,1 @@
-// OrbitControls.js placeholder
+// OrbitControls.js placeholder (normally from https://threejs.org/examples/jsm/controls/OrbitControls.js)

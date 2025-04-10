@@ -12,5 +12,15 @@
     <button onclick="startListening()">Aktifkan Suara</button>
   </div>
   <script src="scripts.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const welcome = new SpeechSynthesisUtterance("Welcome sir");
+    welcome.lang = "en-GB"; // Gaya suara British, boleh tukar
+    welcome.pitch = 1.2;
+    welcome.rate = 1;
+    welcome.volume = 1;
+    speechSynthesis.speak(welcome);
+  });
+  </script>
 </body>
 </html>

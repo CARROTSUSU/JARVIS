@@ -11,7 +11,6 @@ function speak(text, lang = "en-GB", callback) {
   utterance.volume = 1;
 
   if (callback) utterance.onend = callback;
-
   synth.speak(utterance);
 }
 

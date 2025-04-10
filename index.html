@@ -9,7 +9,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: radial-gradient(ellipse at center, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      background: radial-gradient(ellipse at center, #000000 0%, #0c0c1c 70%, #000000 100%);
       font-family: 'Orbitron', sans-serif;
       color: #00ffe7;
       overflow: hidden;
@@ -21,7 +21,7 @@
       transform: translate(-50%, -50%);
       width: 60vw;
       height: 60vh;
-      z-index: 0;
+      z-index: 1;
     }
     .output-box {
       position: absolute;
@@ -32,14 +32,47 @@
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid #00ffe7;
       border-radius: 8px;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
+    }
+    .hud {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      text-align: right;
+      z-index: 3;
+    }
+    .hud h2 {
+      margin: 0;
+      color: #00ffe7;
+      font-size: 16px;
+    }
+    .radar-ring {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      top: calc(50% - 150px);
+      left: calc(50% - 150px);
+      border: 2px solid rgba(0,255,255,0.2);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      z-index: 2;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.4; }
+      50% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.4; }
     }
   </style>
 </head>
 <body>
   <audio id="power-up" src="Jarvis system operation sound.mp3" preload="auto"></audio>
   <div id="globe-container"></div>
+  <div class="radar-ring"></div>
+  <div class="hud">
+    <h2>Status: Online</h2>
+    <h2>Voice: Active</h2>
+  </div>
   <div id="output" class="output-box">Menunggu arahan...</div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>

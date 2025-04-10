@@ -20,6 +20,7 @@ body {
   border: 1px solid #00ffcc;
   border-radius: 5px;
 }
+
 button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -29,27 +30,8 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .welcome-animation {
-  position: absolute;
-  top: 30px;
-  width: 100%;
-  text-align: center;
-}
-
-#welcomeText {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 3px solid #00ffcc;
   font-size: 32px;
-  animation: typing 2.5s steps(12), blink 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 12ch; }
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
+  margin-bottom: 20px;
 }

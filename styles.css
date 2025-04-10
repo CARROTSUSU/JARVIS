@@ -1,0 +1,39 @@
+body {
+  background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+  color: #00ffcc;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.jarvis-container {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #00ffcc;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+}
+
+input {
+  width: 80%;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #00ffcc;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,8 +1,9 @@
-
 const output = document.getElementById("output");
 const lastCmd = document.getElementById("last-command");
 const timeDisplay = document.getElementById("time");
 const synth = window.speechSynthesis;
+const powerUp = document.getElementById("power-up");
+const bgMusic = document.getElementById("bg-music");
 
 function speak(text) {
   const utterance = new SpeechSynthesisUtterance(text);
@@ -27,6 +28,10 @@ function startListening() {
   recognition.onerror = () => {
     speak("Maaf, saya tidak dengar arahan itu.");
   };
+
+  recognition.onend = () => {
+    startListening(); // auto terus dengar semula
+  };
 }
 
 function handleCommand(cmd) {
@@ -43,8 +48,23 @@ function handleCommand(cmd) {
   }
 }
 
-// Clock
+// Paparkan masa semasa
 setInterval(() => {
   const now = new Date();
   timeDisplay.innerText = now.toLocaleTimeString();
 }, 1000);
+
+// Auto mula sistem bila dimuat
+function autoStart() {
+  powerUp.play();
+  bgMusic.play();
+
+  const welcome = new SpeechSynthesisUtterance("Sistem dalam talian, selamat datang tuan.");
+  welcome.lang = "ms-MY";
+  welcome.onend = () => {
+    startListening();
+  };
+  synth.speak(welcome);
+}
+
+window.addEventListener("DOMContentLoaded", autoStart);

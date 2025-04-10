@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ms">
 <head>
@@ -7,11 +6,13 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Audio -->
   <audio id="power-up" src="Jarvis system operation sound.mp3" preload="auto"></audio>
   <audio id="bg-music" src="bg-music.mp3" preload="auto" loop></audio>
 
   <div class="jarvis-container">
     <h1 class="welcome-animation">JARVIS ONLINE</h1>
+
     <div id="dashboard" class="dashboard">
       <p>Status: <span id="status">ONLINE</span></p>
       <p>Voice: <span id="voice">ACTIVE</span></p>
@@ -19,13 +20,16 @@
       <p>Masa: <span id="time"></span></p>
       <p>Lokasi: Malaysia</p>
     </div>
+
     <div id="hologram" class="hologram-sensor">
       <div class="pulse"></div>
       <div class="radar"></div>
     </div>
+
     <div id="output" class="output-box">Arahan anda akan muncul di sini.</div>
   </div>
 
+  <!-- Skrip -->
   <script src="three.min.js"></script>
   <script src="OrbitControls.js"></script>
   <script src="scripts.js"></script>

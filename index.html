@@ -2,20 +2,134 @@
 <html lang="ms">
 <head>
   <meta charset="UTF-8">
-  <title>JARVIS Malay AI</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS - Tony Stark UI</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(ellipse at center, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      overflow: hidden;
+      color: #00ffe7;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .hud {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pulse-circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid #00ffe7;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 25px #00ffe7;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.6; }
+    }
+
+    .output-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid #00ffe7;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #00ffe7;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <!-- Audio files -->
-  <audio id="power-up" src="Jarvis%20system%20operation%20sound.mp3" preload="auto"></audio>
+  <audio id="power-up" src="Jarvis system operation sound.mp3" preload="auto"></audio>
   <audio id="bg-music" src="bg-music.mp3" preload="auto" loop></audio>
 
-  <div class="jarvis-container">
-    <h1 class="welcome-animation">JARVIS ONLINE</h1>
-    <div id="output" class="output-box">Arahan anda akan muncul di sini.</div>
-    <button onclick="startListening()">Aktifkan Suara</button>
+  <div class="hud">
+    <div class="pulse-circle"></div>
+    <div class="output-box" id="output">Menunggu arahan...</div>
+    <button onclick="initJarvis()">Aktifkan JARVIS</button>
   </div>
 
-  <script src="scripts.js"></script>
+  <script>
+    const output = document.getElementById("output");
+    const synth = window.speechSynthesis;
+    const bgMusic = document.getElementById("bg-music");
+    const powerUp = document.getElementById("power-up");
+
+    function speak(text, lang = "en-GB") {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.pitch = 1.1;
+      utterance.rate = 0.95;
+      utterance.volume = 1;
+      synth.speak(utterance);
+      output.innerText = text;
+    }
+
+    function initJarvis() {
+      powerUp.play();
+      powerUp.onended = () => {
+        bgMusic.volume = 0.2;
+        bgMusic.play();
+        speak("Initializing system. JARVIS online. Welcome back, sir. All systems functional.");
+        startListening();
+      };
+    }
+
+    function startListening() {
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = "ms-MY";
+      recognition.start();
+
+      recognition.onresult = (event) => {
+        const command = event.results[0][0].transcript.toLowerCase();
+        output.innerText = "Arahan: " + command;
+        handleCommand(command);
+      };
+
+      recognition.onerror = () => {
+        speak("Maaf, saya tidak dengar arahan itu.", "ms-MY");
+      };
+    }
+
+    function handleCommand(cmd) {
+      if (cmd.includes("hello") || cmd.includes("hai")) {
+        speak("Hai Tuan, ada yang boleh saya bantu?", "ms-MY");
+      } else if (cmd.includes("main lagu")) {
+        speak("Baik, saya sedang mainkan lagu.", "ms-MY");
+        window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+      } else if (cmd.includes("buka google")) {
+        speak("Membuka Google.", "ms-MY");
+        window.open("https://www.google.com", "_blank");
+      } else {
+        speak("Arahan tidak dikenali.", "ms-MY");
+      }
+    }
+  </script>
 </body>
 </html>
